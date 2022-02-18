@@ -7,8 +7,8 @@ Ce projet a été généré avec [Angular CLI](https://github.com/angular/angula
 
 ## Serveur de développement
 
-Éxécutez `ng serve --open` pour un serveur de développement. Naviguez à l'URL `http://localhost:4200/`. L'URL va se recharger automatiquement, s'il y a eu des changements dans le code
+Éxécutez `ng serve --open` pour un serveur de développement. Naviguez à l'URL `http://localhost:4200/`. L'URL va se recharger automatiquement, s'il y a eu des changements dans le code.
 
 ## Récupérer les modules
 
-Éxécutez `npm i` pour télécharger les modules nécessaires au projet
+Éxécutez `npm i` pour télécharger les modules nécessaires au projet.
