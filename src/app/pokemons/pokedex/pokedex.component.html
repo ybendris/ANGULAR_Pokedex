@@ -1,0 +1,8 @@
+<mat-sidenav-container class="pokedex-list-container" autosize>
+    <mat-sidenav mode="side" opened>
+        <app-pokemon-list (idPokemonEvent)="setIdPokemon($event)" (searchPokemonEvent)="searchPokemons($event)" [search]=""></app-pokemon-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-pokemon-detail [idPokemon]="this.idPokemon"></app-pokemon-detail>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,6 +1,12 @@
-<mat-list infiniteScroll (scrolled)="onScroll()" >
+<mat-form-field class="" appearance="fill" >
+  <mat-label>Rechercher</mat-label>
+  <input matInput [(ngModel)]="search" (ngModelChange)="tellSearchQueryToParent($event)">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<mat-list infiniteScroll  [scrollWindow]="false" (scrolled)="onScroll()" class="overflowScroll">
   <mat-list-item *ngFor="let pokemon of dataPokemons?.data">
     <img matListAvatar src="/assets/img/sprites/{{pokemon?.id}}.png" alt="...">
-    <p matLine routerLink="pokemons/{{pokemon?.id}}"> {{pokemon.id}}.{{pokemon.name}}</p>
+    <p matLine (click)="tellIdToParent(pokemon.id)"> {{pokemon.id}}.{{pokemon.name}}</p>
   </mat-list-item>
 </mat-list>

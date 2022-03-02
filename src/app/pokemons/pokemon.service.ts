@@ -36,7 +36,13 @@ export class PokemonService {
 
   getPokemonsOnScroll(offset: number, limit: number): Observable<PagedData<Pokemon>>{
     return this.http.get<PagedData<Pokemon>>(this.pokemonApiUrl+"/pokemons?offset="+offset+"&limit="+limit).pipe(
-      catchError(this.handleError<PagedData<Pokemon>>('getPokemons', {} as PagedData<Pokemon>))
+      catchError(this.handleError<PagedData<Pokemon>>('getPokemonsOnScroll', {} as PagedData<Pokemon>))
+    )
+  }
+
+  getPokemonsWithSearch(query: string): Observable<PagedData<Pokemon>>{
+    return this.http.get<PagedData<Pokemon>>(this.pokemonApiUrl+"/pokemons?search="+query).pipe(
+      catchError(this.handleError<PagedData<Pokemon>>('getPokemonsWithSearch', {} as PagedData<Pokemon>))
     )
   }
 
