@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pokedex',
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokedexComponent implements OnInit {
   constructor() { }
-  idPokemon ?: number;
+  idPokemon =1 ;
   search ?: string;
 
   ngOnInit(): void {
     this.idPokemon=1;
+    console.log(environment.login);
   }
 
   setIdPokemon(id: number): void {

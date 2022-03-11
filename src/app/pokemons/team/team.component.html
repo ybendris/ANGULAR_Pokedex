@@ -1,0 +1,35 @@
+<button mat-stroked-button (click)="getTeam()">Mon équipe</button>
+<h1 id="titre"></h1>
+<div>
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+        <div fxFlex="calc(50%-16px)" fxFlex.sm="calc(100%-16px)" fxFlex.xs="calc(100%-16px)" *ngFor="let pokemon of myTeam">
+            <mat-card >
+                <mat-card-title-group>
+                    <img mat-card-lg-image src="/assets/img/official-artwork/{{pokemon.id}}.png" >
+                    <mat-card-title>{{ pokemon.name }}</mat-card-title>
+                    <mat-card-subtitle>No. {{ pokemon.id | number:"3.0-0"}}</mat-card-subtitle>
+                    <mat-list>
+                    <mat-list-item>
+                        <mat-chip-list>
+                        <mat-chip *ngFor="let type of pokemon?.types">{{type}}</mat-chip>
+                        </mat-chip-list>
+                    </mat-list-item>
+                    <mat-list-item>Taille: {{pokemon?.height | number:"1.1-1" }}m</mat-list-item>
+                    <mat-list-item>Poids: {{pokemon?.weight | number:"1.1-1"}}kg</mat-list-item>
+                    </mat-list>
+                </mat-card-title-group>
+
+                <mat-card-content>
+                    {{ pokemon.description }}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-icon-button class="delete" color="accent" (click)="deleteById(pokemon.id)" >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<button mat-stroked-button (click)="putTeam(); getTeam()" id="update">Update team</button>
+

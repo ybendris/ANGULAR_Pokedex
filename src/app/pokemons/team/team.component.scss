@@ -1,5 +1,5 @@
 button {
-    background-color: #616161;
+    background-color: #424242;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -10,10 +10,21 @@ button {
     font-family: Arial;
   }
   
-  .play {
-    background-color: #424242;
+  .delete {
     padding: 0px 0px;
     margin: 0px;
+  }
+  
+  #titre {
+    display: none;
+    text-align: center;
+    font-family: Arial;
+    font-size: 5em;
+    margin-top: 100px;
+  }
+  
+  #update {
+    display: none;
   }
   
   button:hover {

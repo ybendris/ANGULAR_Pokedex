@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {PokemonService} from "../pokemon.service";
-import {ActivatedRoute} from "@angular/router";
-import {Pokemon} from "../model/pokemon";
 import { Location } from '@angular/common';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Pokemon } from '../model/pokemon';
+import { PokemonService } from '../pokemon.service';
+import {TeamComponent} from "../team/team.component";
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -10,39 +11,39 @@ import { Location } from '@angular/common';
   styleUrls: ['./pokemon-detail.component.scss']
 })
 export class PokemonDetailComponent implements OnInit {
-  dataPokemon ?: Pokemon;
-  @Input() idPokemon?: number; 
- 
+  pokemon?: Pokemon;
+  @Input() pokemonId = 1
+  @ViewChild(TeamComponent)
+  private TeamComponent ?: TeamComponent
 
-  constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private route: ActivatedRoute, private pokemonService: PokemonService, private location: Location) { }
 
   ngOnInit(): void {
-    this.getPokemonFromService(); 
+    this.getPokemon()
   }
 
-  ngOnChanges(changes: number) {
-    console.log(changes);
-    this.getPokemonFromService();
+  ngOnChanges(id : number){
+    console.log("OnChange" + id)
+    this.getPokemon()
   }
 
-  private getPokemonFromService():void {
-    //const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.pokemonService.getPokemon(this.idPokemon as number).subscribe(data =>{
-        this.dataPokemon = data;
-        console.log(data);
-      }
-    )
+  getPokemon(): void{
+    const id =  this.pokemonId
+    this.pokemonService.getPokemon(id).subscribe(pokemon => {this.pokemon = pokemon; console.log(pokemon)})
+  }
+
+  playSound(id?: number) {
+    let audio = new Audio();
+    audio.src=`../assets/audio/${id}.mp3`
+    audio.load()
+    audio.play()
   }
 
   goBack(): void {
-    this.location.back();
+    this.location.back()
   }
 
-
-  playSound(id ?: number) {
-    let audio = new Audio();
-    audio.src = `../assets/audio/${id}.mp3`
-    audio.load();
-    audio.play();
+  addPokemonToTeam(id: number): void{
+    this.TeamComponent?.addPokemon(id)
   }
 }

@@ -14,12 +14,16 @@ import { PokedexComponent } from './pokedex/pokedex.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { TeamComponent } from './team/team.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
     PokemonListComponent,
     PokemonDetailComponent,
-    PokedexComponent
+    PokedexComponent,
+    TeamComponent
   ],
   exports: [
     PokemonListComponent,
@@ -37,7 +41,8 @@ import {MatInputModule} from '@angular/material/input';
     InfiniteScrollModule,
     MatSidenavModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    FlexLayoutModule
   ]
 })
 export class PokemonsModule { }

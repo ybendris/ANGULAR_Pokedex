@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {catchError, Observable, of} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {catchError, forkJoin, Observable, of} from "rxjs";
 import {PagedData} from "./model/paged-data";
 import {Pokemon} from "./model/pokemon";
+import { Auth } from './model/auth';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +47,35 @@ export class PokemonService {
       catchError(this.handleError<PagedData<Pokemon>>('getPokemonsWithSearch', {} as PagedData<Pokemon>))
     )
   }
+
+  login(): Observable<Auth>{
+    const body = {
+      email: environment.login,
+      password: environment.passe
+    }
+    return this.http.post<Auth>(this.pokemonApiUrl + "/auth/login", body).pipe(
+      catchError(this.handleError<Auth>("login", {} as Auth)))
+  }
+
+  getTeamId(token: string): Observable<number[]>{
+    let headers = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer "+token);
+    return this.http.get<number[]>(this.pokemonApiUrl+"/trainers/me/team",{headers})
+  }
+
+
+
+  putTeam(body: number[], header: HttpHeaders): Observable<any> {
+    return this.http.put<string>(this.pokemonApiUrl + "/trainers/me/team", body, {headers: header}).pipe(
+      catchError(this.handleError<string>("putTeam", {} as string))
+    )
+  }
+
+  getTeam(header: HttpHeaders): Observable<number[]>{
+    return this.http.get<number[]>(this.pokemonApiUrl + "/trainers/me/team",{headers: header}).pipe(
+      catchError(this.handleError<number[]>("getTeam", {} as number[]))
+    )
+  }
+  
 
 }

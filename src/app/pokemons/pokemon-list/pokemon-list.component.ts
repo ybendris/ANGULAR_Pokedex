@@ -14,12 +14,10 @@ export class PokemonListComponent implements OnInit {
   dataPokemons?: PagedData<Pokemon>;
 
   @Input() search?: string; 
-  
 
   @Output() searchPokemonEvent = new EventEmitter<string>();
   
   @Output() idPokemonEvent = new EventEmitter<number>();
-
 
   constructor(private pokemonService: PokemonService) { }
 
