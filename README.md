@@ -1,4 +1,4 @@
-Ce projet angular est un pokedex, il permet de lister des pokémons récupérés depuis une API, et d'afficher les détails d'un pokémon lors d'un clic sur ce dernier.
+Ce projet angular est un pokedex, il permet de lister des pokémons récupérés depuis une API, et d'afficher les détails d'un pokémon lors d'un clic sur ce dernier. Une gestion d'équipe de pokemon est possible.
 
 
 # AngularPokedex
